@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+
+<AnchorPane prefHeight="676.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.cs1302.inventory_management.view.MainWindow">
+   <children>
+      <TextField fx:id="nameText" layoutX="63.0" layoutY="26.0" />
+      <TextField fx:id="costText" layoutX="261.0" layoutY="26.0" prefHeight="31.0" prefWidth="105.0" />
+      <Button fx:id="addProduceButton" layoutX="149.0" layoutY="65.0" mnemonicParsing="false" onAction="#addProduce" text="Add Produce" />
+      <TextField fx:id="assemblyCostText" layoutX="536.0" layoutY="26.0" prefHeight="31.0" prefWidth="112.0" />
+      <CheckBox fx:id="isAssembledCheckbox" layoutX="656.0" layoutY="19.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="119.0" text="is assembled" />
+      <Button fx:id="addFurnitureButton" layoutX="265.0" layoutY="65.0" mnemonicParsing="false" onAction="#addFurniture" text="Add Furniture" />
+      <Label layoutX="136.0" layoutY="6.0" text="Name" />
+      <Label layoutX="297.0" layoutY="6.0" text="Cost" />
+      <Label layoutX="382.0" layoutY="6.0" text="Days Unitl Expiration" />
+      <Label layoutX="545.0" layoutY="6.0" text="AssemblyCost" />
+      <Button fx:id="findProduceButton" layoutX="388.0" layoutY="65.0" mnemonicParsing="false" onAction="#findProduce" text="Find Produce" />
+      <Button fx:id="findFurnitureButton" layoutX="504.0" layoutY="65.0" mnemonicParsing="false" onAction="#findFurniture" text="FindFurniture" />
+      <Button fx:id="addToTransactionButton" layoutX="334.0" layoutY="125.0" mnemonicParsing="false" onAction="#addToTransaction" text="Add To Current Transaction" />
+      <TextField fx:id="itemIdText" layoutX="203.0" layoutY="125.0" prefHeight="31.0" prefWidth="127.0" />
+      <Label layoutX="242.0" layoutY="108.0" text="Item Id" />
+      <Button fx:id="completeTransactionButton" layoutX="541.0" layoutY="125.0" mnemonicParsing="false" onAction="#completeTransaction" text="Complete Transaction" />
+      <TextArea fx:id="outputTextArea" editable="false" layoutX="14.0" layoutY="173.0" prefHeight="394.0" prefWidth="774.0" />
+      <Button fx:id="saveButton" layoutX="508.0" layoutY="635.0" mnemonicParsing="false" onAction="#save" text="Save" />
+      <TextField fx:id="filenameText" layoutX="315.0" layoutY="637.0" />
+      <Label layoutX="372.0" layoutY="618.0" text="File Name" />
+      <Button fx:id="displayInventoryButton" layoutX="415.0" layoutY="574.0" mnemonicParsing="false" onAction="#displayInventory" text="Display Inventory" />
+      <Button fx:id="displayTransactionButton" layoutX="250.0" layoutY="574.0" mnemonicParsing="false" onAction="#displayTransaction" text="Display Transaction" />
+      <ChoiceBox fx:id="typeComboBox" layoutX="78.0" layoutY="126.0" prefHeight="25.0" prefWidth="119.0" />
+      <TextField fx:id="daysUnitlExpiration" layoutX="376.0" layoutY="26.0" prefHeight="31.0" prefWidth="149.0" />
+      <Line endX="400.0" layoutX="396.0" layoutY="104.0" startX="-390.0" />
+      <Line endX="400.0" layoutX="396.0" layoutY="164.0" startX="-390.0" />
+      <Line endX="400.0" layoutX="393.0" layoutY="615.0" startX="-390.0" />
+      <ComboBox fx:id="fileType" layoutX="149.0" layoutY="637.0" prefWidth="150.0" />
+   </children>
+</AnchorPane>
