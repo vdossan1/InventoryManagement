@@ -14,10 +14,8 @@ public class Furniture extends Product {
 	/**
 	 * Creates a new Furniture product.
 	 *
-	 * @precondition name != null && name.length() > 0 && cost > 0 && assemblycost >
-	 *               0
-	 * @postcondition getName() == name && getAssemblyCost() == assemblyCost &&
-	 *                isAssembled() == assembled
+	 * @precondition assemblyCost > 0
+	 * @postcondition getAssemblyCost() == assemblyCost && isAssembled() == assembled
 	 *
 	 * @param name         name of the product
 	 * @param cost         cost of the product in pennies
@@ -37,11 +35,9 @@ public class Furniture extends Product {
 	/**
 	 * Creates a new Furniture product.
 	 *
-	 * @precondition name != null && name.length() > 0 && cost > 0 && assemblyCost >
-	 *               0 && id > 0
+	 * @precondition assemblyCost >0
 	 *
-	 * @postcondition getName() == name && getAssemblyCost() == assemblyCost &&
-	 *                isAssembled() == assembled && getId() == id
+	 * @postcondition assemblyCost && isAssembled() == assembled
 	 *
 	 * @param id           id of the product
 	 * @param name         name of the product

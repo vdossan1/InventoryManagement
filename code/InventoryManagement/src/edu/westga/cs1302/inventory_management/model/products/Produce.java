@@ -15,10 +15,8 @@ public class Produce extends Product {
 	/**
 	 * Creates a new Produce product
 	 *
-	 * @precondition name != null && name.length() > 0 && cost > 0 && expirationDate
-	 *               != null
-	 * @postcondition getName() == name && getCost() == cost && getExpirationDate()
-	 *                == expirationDate && getId() > 0
+	 * @precondition  expirationDate != null
+	 * @postcondition getExpirationDate() == expirationDate
 	 *
 	 * @param name           name of the product
 	 * @param cost           cost of the product in pennies
@@ -38,10 +36,8 @@ public class Produce extends Product {
 	/**
 	 * Creates a new Produce product
 	 *
-	 * @precondition name != null && name.length() > 0 && cost > 0 && expirationDate
-	 *               != null && id > 0
-	 * @postcondition getName() == name && getCost() == cost && getExpirationDate()
-	 *                == expirationDate && getId() == id
+	 * @precondition expirationDate != null
+	 * @postcondition getExpirationDate() == expirationDate
 	 *
 	 * @param id             id of the product
 	 * @param name           name of the product

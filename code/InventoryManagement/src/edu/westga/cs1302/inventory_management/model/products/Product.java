@@ -18,10 +18,8 @@ public abstract class Product {
 	/**
 	 * Creates a new Product
 	 *
-	 * @precondition name != null && name.length() > 0 && cost > 0 && expirationDate
-	 *               != null
-	 * @postcondition getName() == name && getCost() == cost && getExpirationDate()
-	 *                == expirationDate && getId() > 0
+	 * @precondition name != null && name.length() > 0 && cost > 0
+	 * @postcondition getName() == name && getCost() == cost && getId() > 0
 	 *
 	 * @param name           name of the product
 	 * @param cost           cost of the product in pennies
@@ -42,10 +40,8 @@ public abstract class Product {
 	/**
 	 * Creates a new Product
 	 *
-	 * @precondition name != null && name.length() > 0 && cost > 0 && expirationDate
-	 *               != null && id > 0
-	 * @postcondition getName() == name && getCost() == cost && getExpirationDate()
-	 *                == expirationDate && getId() == id
+	 * @precondition name != null && name.length() > 0 && cost > 0 && id > 0
+	 * @postcondition getName() == name && getCost() == cost && getId() == id
 	 *
 	 * @param id             id of the product
 	 * @param name           name of the product
