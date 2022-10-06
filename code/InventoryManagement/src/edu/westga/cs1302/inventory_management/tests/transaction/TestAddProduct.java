@@ -1,32 +1,36 @@
 package edu.westga.cs1302.inventory_management.tests.transaction;
 
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import edu.westga.cs1302.inventory_management.model.Transaction;
 import edu.westga.cs1302.inventory_management.model.products.Furniture;
+import edu.westga.cs1302.inventory_management.model.products.Produce;
+import edu.westga.cs1302.inventory_management.model.products.Product;
 
-public class TestAddFurniture {
-	
+class TestAddProduct {
+
 	@Test
-	public void testNullProduce() {
+	public void testNullProduct() {
 		Transaction transaction = new Transaction();
 		
 		assertThrows(IllegalArgumentException.class, () -> {
-			transaction.addFurniture(null);
+			transaction.addProduct(null);
 		});
 	}
 
 	@Test
 	public void testAddToEmptyList() {
 		Transaction transaction = new Transaction();
-		Furniture first = new Furniture("first", 1, 1, false);
+		Product first = new Furniture("first", 1, 1, false);
 		
-		transaction.addFurniture(first);
+		transaction.addProduct(first);
 		
-		ArrayList<Furniture> furnitureList = transaction.getFurniture();
+		ArrayList<Product> furnitureList = transaction.getProduct();
 		assertEquals(1, furnitureList.size());
 		assertSame(first, furnitureList.get(0));
 	}
@@ -34,13 +38,13 @@ public class TestAddFurniture {
 	@Test
 	public void testAddToNonEmptyList() {
 		Transaction transaction = new Transaction();
-		Furniture first = new Furniture("first", 1, 1, false);
-		Furniture second = new Furniture("second", 1, 1, false);
-		transaction.addFurniture(first);
+		Product first = new Furniture("first", 1, 1, false);
+		Product second = new Produce("first", 1, LocalDate.of(2017, 8, 9));
+		transaction.addProduct(first);
 		
-		transaction.addFurniture(second);
+		transaction.addProduct(second);
 		
-		ArrayList<Furniture> furnitureList = transaction.getFurniture();
+		ArrayList<Product> furnitureList = transaction.getProduct();
 		assertEquals( 2, furnitureList.size());
 		assertSame(first, furnitureList.get(0));
 		assertSame(second, furnitureList.get(1));

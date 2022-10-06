@@ -2,8 +2,7 @@ package edu.westga.cs1302.inventory_management.model;
 
 import java.util.ArrayList;
 
-import edu.westga.cs1302.inventory_management.model.products.Furniture;
-import edu.westga.cs1302.inventory_management.model.products.Produce;
+import edu.westga.cs1302.inventory_management.model.products.Product;
 
 /** Stores the products for a single transaction
  * 
@@ -11,64 +10,40 @@ import edu.westga.cs1302.inventory_management.model.products.Produce;
  * @version Fall 2022
  */
 public class Transaction {
-	private ArrayList<Produce> produce;
-	private ArrayList<Furniture> furniture;
+	private ArrayList<Product> product;
 	
 	/** Create an empty Transaction
 	 * 
 	 * @precondition none
-	 * @postcondition getProduce().size() == 0 &&
-	 * 				  getFurniture().size() == 0
+	 * @postcondition getProduct().size() == 0
 	 * 
 	 */
 	public Transaction() {
-		this.produce = new ArrayList<Produce>();
-		this.furniture = new ArrayList<Furniture>();
+		this.product = new ArrayList<Product>();
 	}
 	
-	/** Get the collection of Produce products stored in the Transaction
+	/** Get the collection of Products stored in the Transaction
 	 * 
-	 * @return the collection of Produce products stored in the Transaction
+	 * @return the collection of Products stored in the Transaction
 	 */
-	public ArrayList<Produce> getProduce() {
-		return this.produce;
+	public ArrayList<Product> getProduct() {
+		return this.product;
 	}
 
-	/** Get the collection of Furniture products stored in the Transaction
+	/** Add a new Product to the Transaction
 	 * 
-	 * @return the collection of Furniture products stored in the Transaction
-	 */
-	public ArrayList<Furniture> getFurniture() {
-		return this.furniture;
-	}
-	
-	/** Add a new Produce product to the Transaction
-	 * 
-	 * @precondition produce != null
+	 * @precondition product != null
 	 * @postcondition none
 	 * 
-	 * @param produce new Produce product to be added to the Transaction
+	 * @param product new Product to be added to the Transaction
 	 */
-	public void addProduce(Produce produce) {
-		if (produce == null) {
-			throw new IllegalArgumentException("invalid produce");
+	public void addProduct(Product product) {
+		if (product == null) {
+			throw new IllegalArgumentException("invalid product");
 		}
-		this.produce.add(produce);
+		this.product.add(product);
 	}
 	
-	/** Add a new Furniture product to the Transaction
-	 * 
-	 * @precondition furniture != null
-	 * @postcondition none
-	 * 
-	 * @param furniture new Furniture product to be added to the Transaction
-	 */
-	public void addFurniture(Furniture furniture) {
-		if (furniture == null) {
-			throw new IllegalArgumentException("invalid furniture");
-		}
-		this.furniture.add(furniture);
-	}
 	
 	/** Gets the total cost for the transaction
 	 * 
@@ -80,12 +55,8 @@ public class Transaction {
 	public int getCost() {
 		int totalCost = 0;
 		
-		for (Produce produce : this.produce) {
-			totalCost += produce.getCost();
-		}
-		
-		for (Furniture furniture : this.furniture) {
-			totalCost += furniture.getCost();
+		for (Product product : this.product) {
+			totalCost += product.getCost();
 		}
 		
 		return totalCost;
@@ -99,7 +70,7 @@ public class Transaction {
 	 * @return the number of products stored in the Transaction
 	 */
 	public int size() {
-		return this.produce.size() + this.furniture.size();
+		return this.product.size();
 	}
 
 }

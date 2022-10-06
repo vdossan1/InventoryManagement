@@ -6,8 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import edu.westga.cs1302.inventory_management.model.Transaction;
-import edu.westga.cs1302.inventory_management.model.products.Furniture;
-import edu.westga.cs1302.inventory_management.model.products.Produce;
+import edu.westga.cs1302.inventory_management.model.products.Product;
 
 public class TestConstructorInvoked {
 
@@ -15,10 +14,8 @@ public class TestConstructorInvoked {
 	public void testDefaultCase() {
 		Transaction result = new Transaction();
 		
-		ArrayList<Produce> produceList = result.getProduce();
+		ArrayList<Product> produceList = result.getProduct();
 		assertEquals(0, produceList.size());
-		ArrayList<Furniture> furnitureList = result.getFurniture();
-		assertEquals(0, furnitureList.size());
 	}
 
 }

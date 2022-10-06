@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import edu.westga.cs1302.inventory_management.model.Transaction;
 import edu.westga.cs1302.inventory_management.model.products.Furniture;
 import edu.westga.cs1302.inventory_management.model.products.Produce;
+import edu.westga.cs1302.inventory_management.model.products.Product;
 
 public class TestSize {
 
@@ -21,8 +22,8 @@ public class TestSize {
 	@Test
 	public void testSomeProduceAndNoFurniture() {
 		Transaction transaction = new Transaction();
-		Produce produce = new Produce("produce", 1, LocalDate.of(2017, 8, 9));
-		transaction.addProduce(produce);
+		Product produce = new Produce("produce", 1, LocalDate.of(2017, 8, 9));
+		transaction.addProduct(produce);
 		
 		assertEquals(1, transaction.size());
 	}
@@ -31,7 +32,7 @@ public class TestSize {
 	public void testNoProduceAndSomeFurniture() {
 		Transaction transaction = new Transaction();
 		Furniture furniture = new Furniture("furniture", 1, 1, false);
-		transaction.addFurniture(furniture);
+		transaction.addProduct(furniture);
 		
 		assertEquals(1, transaction.size());
 	}
@@ -39,10 +40,10 @@ public class TestSize {
 	@Test
 	public void testSomeProduceAndSomeFurniture() {
 		Transaction transaction = new Transaction();
-		Produce produce = new Produce("produce", 1, LocalDate.of(2017, 8, 9));
-		transaction.addProduce(produce);
-		Furniture furniture = new Furniture("furniture", 1, 1, true);
-		transaction.addFurniture(furniture);
+		Product produce = new Produce("produce", 1, LocalDate.of(2017, 8, 9));
+		transaction.addProduct(produce);
+		Product furniture = new Furniture("furniture", 1, 1, true);
+		transaction.addProduct(furniture);
 		
 		assertEquals(2, transaction.size());
 	}
