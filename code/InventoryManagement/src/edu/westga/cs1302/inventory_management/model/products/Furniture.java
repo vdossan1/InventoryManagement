@@ -1,17 +1,13 @@
 package edu.westga.cs1302.inventory_management.model.products;
 
-import java.util.Random;
-
 /**
  * Stores information for a Furniture product
  *
  * @author CS 1302
  * @version Fall 2022
  */
-public class Furniture {
-	private int id;
-	private String name;
-	private int cost;
+public class Furniture extends Product {
+	
 	private int assemblyCost;
 	private boolean assembled;
 
@@ -29,20 +25,13 @@ public class Furniture {
 	 * @param assembled    if the furniture is assembled
 	 */
 	public Furniture(String name, int cost, int assemblyCost, boolean assembled) {
-		if (name == null || name.length() < 1) {
-			throw new IllegalArgumentException("Invalid name");
-		}
-		if (cost < 1) {
-			throw new IllegalArgumentException("Invalid cost");
-		}
+		super(name, cost);
+		
 		if (assemblyCost < 1) {
 			throw new IllegalArgumentException("Invalid assembly cost");
 		}
-		this.name = name;
-		this.cost = cost;
 		this.assemblyCost = assemblyCost;
 		this.assembled = assembled;
-		this.id = (new Random()).nextInt(Integer.MAX_VALUE) + 1;
 	}
 
 	/**
@@ -61,35 +50,14 @@ public class Furniture {
 	 * @param assembled    if the furniture is assembled
 	 */
 	public Furniture(int id, String name, int cost, int assemblyCost, boolean assembled) {
-		if (name == null || name.length() < 1) {
-			throw new IllegalArgumentException("Name must not be null");
-		}
-		if (cost < 1) {
-			throw new IllegalArgumentException("Cost must be positive");
-		}
+		super(id, name, cost);
+		
 		if (assemblyCost < 1) {
 			throw new IllegalArgumentException("Assembly Cost must be positive");
 		}
-		if (id < 1) {
-			throw new IllegalArgumentException("Id must be positive");
-		}
-		this.name = name;
-		this.cost = cost;
+		
 		this.assembled = assembled;
 		this.assemblyCost = assemblyCost;
-		this.id = id;
-	}
-
-	/**
-	 * Gets the name of the Furniture product
-	 *
-	 * @precondition none
-	 * @postcondition none
-	 *
-	 * @return name of the product
-	 */
-	public String getName() {
-		return this.name;
 	}
 
 	/**
@@ -107,18 +75,6 @@ public class Furniture {
 			return this.cost + this.assemblyCost;
 		}
 		return this.cost;
-	}
-
-	/**
-	 * Gets the id of the Produce product
-	 *
-	 * @precondition none
-	 * @postcondition none
-	 *
-	 * @return the id of the product
-	 */
-	public int getId() {
-		return this.id;
 	}
 
 	/**
