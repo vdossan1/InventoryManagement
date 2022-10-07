@@ -7,6 +7,7 @@ import edu.westga.cs1302.inventory_management.model.InventoryManager;
 import edu.westga.cs1302.inventory_management.model.Transaction;
 import edu.westga.cs1302.inventory_management.model.products.Furniture;
 import edu.westga.cs1302.inventory_management.model.products.Produce;
+import edu.westga.cs1302.inventory_management.model.products.Product;
 
 /**
  * Exports InventoryManager to file or string Exports Transaction, Produce, and
@@ -104,14 +105,11 @@ public class InventorySerializer {
 		if (transactionItem == null) {
 			throw new IllegalArgumentException("Must provide a Transaction object");
 		}
+		
 		String transaction = "BEGIN-TRANSACTION" + System.lineSeparator();
 
-		for (Produce produceItem : transactionItem.getProduce()) {
-			transaction += this.serializeProduce(produceItem) + System.lineSeparator();
-		}
-
-		for (Furniture furnitureItem : transactionItem.getFurniture()) {
-			transaction += this.serializeFurniture(furnitureItem) + System.lineSeparator();
+		for (Product productItem: transactionItem.getProduct()) {
+			transaction += productItem.serialize(this) + System.lineSeparator();
 		}
 
 		transaction += "END-TRANSACTION";
