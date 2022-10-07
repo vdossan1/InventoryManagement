@@ -2,6 +2,8 @@ package edu.westga.cs1302.inventory_management.model.products;
 
 import java.time.LocalDate;
 
+import edu.westga.cs1302.inventory_management.model.inventory_serialization.InventorySerializer;
+
 /**
  * Stores information for a produce product.
  *
@@ -55,6 +57,23 @@ public class Produce extends Product {
 		
 	}
 
+	/**
+	 *Converts the current produce object to a string representation. The string will use the
+	 * following format: PRODUCE <id> <name> <cost> <expiration month> <expiration day> <expiration year>
+	 * 
+	 * @precondition inventorySerializer != null
+	 * @postcondition none
+	 * 
+	 * @param inventorySerializer to be serialized
+	 * 
+	 * @return string representation of the current produce object
+	 */
+	public String serialize(InventorySerializer inventorySerializer) {
+		if (inventorySerializer == null) {
+			throw new IllegalArgumentException("invetory serializer cannot be null");
+		}
+		return inventorySerializer.serializeProduce(this);
+	}
 
 	/**
 	 * Gets the cost of the Produce product in pennies

@@ -1,5 +1,7 @@
 package edu.westga.cs1302.inventory_management.model.products;
 
+import edu.westga.cs1302.inventory_management.model.inventory_serialization.InventorySerializer;
+
 /**
  * Stores information for a Furniture product
  *
@@ -54,6 +56,24 @@ public class Furniture extends Product {
 		
 		this.assembled = assembled;
 		this.assemblyCost = assemblyCost;
+	}
+	
+	/**
+	 * Converts the current furniture object to a string representation. The string will use
+	 * the following format: FURNITURE <id> <name> <cost> <assembled> <assembly cost>
+	 *
+	 * @precondition inventorySerializer != null
+	 * @postcondition none
+	 *
+	 * @param inventorySerializer object to be serialized
+	 *
+	 * @return string representation of the current furniture object
+	 */
+	public String serialize(InventorySerializer inventorySerializer) {
+		if (inventorySerializer == null) {
+			throw new IllegalArgumentException("invetory serializer cannot be null");
+		}
+		return inventorySerializer.serializeFurniture(this);
 	}
 
 	/**
