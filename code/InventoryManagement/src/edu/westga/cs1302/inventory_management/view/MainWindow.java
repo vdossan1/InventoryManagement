@@ -162,7 +162,7 @@ public class MainWindow {
 	private void addProduceToTransaction(int id) {
 		Produce item = this.inventory.getProduceById(id);
 		if (item != null) {
-			this.currentTransaction.addProduce(item);
+			this.currentTransaction.addProduct(item);
 			this.inventory.removeItemById(item.getId());
 			this.outputTextArea.setText(this.fileType.getValue().serializeProduce(item));
 		} else {
@@ -173,7 +173,7 @@ public class MainWindow {
 	private void addFurnitureToTransaction(int id) {
 		Furniture item = this.inventory.getFurnitureById(id);
 		if (item != null) {
-			this.currentTransaction.addFurniture(item);
+			this.currentTransaction.addProduct(item);
 			this.inventory.removeItemById(item.getId());
 			this.outputTextArea.setText(this.fileType.getValue().serializeFurniture(item));
 		} else {
