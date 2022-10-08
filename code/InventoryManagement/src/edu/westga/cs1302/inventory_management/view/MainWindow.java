@@ -10,6 +10,7 @@ import edu.westga.cs1302.inventory_management.model.products.Produce;
 import edu.westga.cs1302.inventory_management.model.products.ProductType;
 import edu.westga.cs1302.inventory_management.model.Transaction;
 import edu.westga.cs1302.inventory_management.model.inventory_serialization.PlainTextSerializer;
+import edu.westga.cs1302.inventory_management.model.inventory_serialization.Serializer;
 import edu.westga.cs1302.inventory_management.model.InventoryManager;
 
 import javafx.event.ActionEvent;
@@ -73,7 +74,7 @@ public class MainWindow {
 	@FXML
 	private TextField daysUnitlExpiration;
     @FXML
-    private ComboBox<PlainTextSerializer> fileType;
+    private ComboBox<Serializer> fileType;
 
 	private InventoryManager inventory;
 	private Transaction currentTransaction;
