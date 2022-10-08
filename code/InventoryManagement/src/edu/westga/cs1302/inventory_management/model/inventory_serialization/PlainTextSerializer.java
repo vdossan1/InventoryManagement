@@ -1,8 +1,5 @@
 package edu.westga.cs1302.inventory_management.model.inventory_serialization;
 
-import java.io.FileWriter;
-import java.io.IOException;
-
 import edu.westga.cs1302.inventory_management.model.InventoryManager;
 import edu.westga.cs1302.inventory_management.model.Transaction;
 import edu.westga.cs1302.inventory_management.model.products.Furniture;
@@ -18,23 +15,6 @@ import edu.westga.cs1302.inventory_management.model.products.Product;
  *
  */
 public class PlainTextSerializer implements Serializer {
-
-	/**
-	 * Converts an inventory object to a string representation and writes the string
-	 * to file.
-	 *
-	 * @precondition inventoryItem != null
-	 * @postcondition none
-	 *
-	 * @param filename  name of the output file
-	 * @param inventory object to be serialized
-	 *
-	 */
-	public void serializeInventoryToFile(String filename, InventoryManager inventory) throws IOException {
-		try (FileWriter out = new FileWriter(filename)) {
-			out.write(this.serializeInventory(inventory));
-		}
-	}
 
 	/**
 	 * Converts a produce object to a string representation. The string will use the
