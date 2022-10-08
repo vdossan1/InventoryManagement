@@ -1,6 +1,6 @@
 package edu.westga.cs1302.inventory_management.model.products;
 
-import edu.westga.cs1302.inventory_management.model.inventory_serialization.InventorySerializer;
+import edu.westga.cs1302.inventory_management.model.inventory_serialization.PlainTextSerializer;
 
 /**
  * Stores information for a Furniture product
@@ -69,7 +69,7 @@ public class Furniture extends Product {
 	 *
 	 * @return string representation of the current furniture object
 	 */
-	public String serialize(InventorySerializer inventorySerializer) {
+	public String serialize(PlainTextSerializer inventorySerializer) {
 		if (inventorySerializer == null) {
 			throw new IllegalArgumentException("invetory serializer cannot be null");
 		}

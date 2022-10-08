@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
-import edu.westga.cs1302.inventory_management.model.inventory_serialization.InventorySerializer;
+import edu.westga.cs1302.inventory_management.model.inventory_serialization.PlainTextSerializer;
 import edu.westga.cs1302.inventory_management.model.products.Produce;
 
 class TestSerialize {
@@ -26,7 +26,7 @@ class TestSerialize {
 	public void testValidInventorySerialize() {
 		LocalDate expirationDate = LocalDate.of(2017, 02, 12);
 		Produce produce = new Produce(1, "name", 2, expirationDate);
-		InventorySerializer serializer = new InventorySerializer();
+		PlainTextSerializer serializer = new PlainTextSerializer();
 
 		String result = produce.serialize(serializer);
 

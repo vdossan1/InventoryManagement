@@ -3,14 +3,14 @@ package edu.westga.cs1302.inventory_management.tests.inventory_serialization.inv
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
-import edu.westga.cs1302.inventory_management.model.inventory_serialization.InventorySerializer;
+import edu.westga.cs1302.inventory_management.model.inventory_serialization.PlainTextSerializer;
 import edu.westga.cs1302.inventory_management.model.products.Furniture;
 
 public class TestSerializeFurniture {
 
 	@Test
 	public void testNullFurniture() {
-		InventorySerializer serializer = new InventorySerializer();
+		PlainTextSerializer serializer = new PlainTextSerializer();
 
 		assertThrows(IllegalArgumentException.class, () -> {
 			serializer.serializeProduce(null);
@@ -20,7 +20,7 @@ public class TestSerializeFurniture {
 	@Test
 	public void testValidFurniture() {
 		Furniture furniture = new Furniture(1, "name", 2, 3, false);
-		InventorySerializer serializer = new InventorySerializer();
+		PlainTextSerializer serializer = new PlainTextSerializer();
 
 		String result = serializer.serializeFurniture(furniture);
 

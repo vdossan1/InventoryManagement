@@ -17,7 +17,7 @@ import edu.westga.cs1302.inventory_management.model.products.Product;
  * @version Fall 2022
  *
  */
-public class InventorySerializer implements Serializer {
+public class PlainTextSerializer implements Serializer {
 
 	/**
 	 * Converts an inventory object to a string representation and writes the string

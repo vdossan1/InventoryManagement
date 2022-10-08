@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import edu.westga.cs1302.inventory_management.model.inventory_serialization.InventorySerializer;
+import edu.westga.cs1302.inventory_management.model.inventory_serialization.PlainTextSerializer;
 import edu.westga.cs1302.inventory_management.model.products.Furniture;
 import edu.westga.cs1302.inventory_management.model.products.Product;
 
@@ -24,7 +24,7 @@ class TestSerialize {
 	public void testValidInventorySerialize() {
 		
 		Product furniture = new Furniture(1, "name", 2, 3, false);
-		InventorySerializer serializer = new InventorySerializer();
+		PlainTextSerializer serializer = new PlainTextSerializer();
 
 		String result = furniture.serialize(serializer);
 

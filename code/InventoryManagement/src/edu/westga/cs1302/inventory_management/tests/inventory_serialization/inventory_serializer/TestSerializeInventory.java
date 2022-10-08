@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import edu.westga.cs1302.inventory_management.model.InventoryManager;
 import edu.westga.cs1302.inventory_management.model.Transaction;
-import edu.westga.cs1302.inventory_management.model.inventory_serialization.InventorySerializer;
+import edu.westga.cs1302.inventory_management.model.inventory_serialization.PlainTextSerializer;
 import edu.westga.cs1302.inventory_management.model.products.Furniture;
 import edu.westga.cs1302.inventory_management.model.products.Produce;
 
@@ -15,7 +15,7 @@ public class TestSerializeInventory {
 
 	@Test
 	public void testNullInventory() {
-		InventorySerializer serializer = new InventorySerializer();
+		PlainTextSerializer serializer = new PlainTextSerializer();
 
 		assertThrows(IllegalArgumentException.class, () -> {
 			serializer.serializeTransaction(null);
@@ -25,7 +25,7 @@ public class TestSerializeInventory {
 	@Test
 	public void testEmptyInventory() {
 		InventoryManager inventory = new InventoryManager();
-		InventorySerializer serializer = new InventorySerializer();
+		PlainTextSerializer serializer = new PlainTextSerializer();
 
 		String result = serializer.serializeInventory(inventory);
 
@@ -37,7 +37,7 @@ public class TestSerializeInventory {
 		Furniture furniture = new Furniture(1, "name", 2, 3, false);
 		InventoryManager inventory = new InventoryManager();
 		inventory.addFurniture(furniture);
-		InventorySerializer serializer = new InventorySerializer();
+		PlainTextSerializer serializer = new PlainTextSerializer();
 
 		String result = serializer.serializeInventory(inventory);
 
@@ -53,7 +53,7 @@ public class TestSerializeInventory {
 		InventoryManager inventory = new InventoryManager();
 		inventory.addFurniture(furniture);
 		inventory.addFurniture(furniture2);
-		InventorySerializer serializer = new InventorySerializer();
+		PlainTextSerializer serializer = new PlainTextSerializer();
 
 		String result = serializer.serializeInventory(inventory);
 
@@ -69,7 +69,7 @@ public class TestSerializeInventory {
 		Produce produce = new Produce(1, "name", 2, expirationDate);
 		InventoryManager inventory = new InventoryManager();
 		inventory.addProduce(produce);
-		InventorySerializer serializer = new InventorySerializer();
+		PlainTextSerializer serializer = new PlainTextSerializer();
 
 		String result = serializer.serializeInventory(inventory);
 
@@ -86,7 +86,7 @@ public class TestSerializeInventory {
 		InventoryManager inventory = new InventoryManager();
 		inventory.addProduce(produce);
 		inventory.addProduce(produce2);
-		InventorySerializer serializer = new InventorySerializer();
+		PlainTextSerializer serializer = new PlainTextSerializer();
 
 		String result = serializer.serializeInventory(inventory);
 
@@ -104,7 +104,7 @@ public class TestSerializeInventory {
 		InventoryManager inventory = new InventoryManager();
 		inventory.addFurniture(furniture);
 		inventory.addProduce(produce);
-		InventorySerializer serializer = new InventorySerializer();
+		PlainTextSerializer serializer = new PlainTextSerializer();
 
 		String result = serializer.serializeInventory(inventory);
 
@@ -126,7 +126,7 @@ public class TestSerializeInventory {
 		inventory.addFurniture(furniture2);
 		inventory.addProduce(produce);
 		inventory.addProduce(produce2);
-		InventorySerializer serializer = new InventorySerializer();
+		PlainTextSerializer serializer = new PlainTextSerializer();
 
 		String result = serializer.serializeInventory(inventory);
 
@@ -143,7 +143,7 @@ public class TestSerializeInventory {
 		Transaction transaction = new Transaction();
 		InventoryManager inventory = new InventoryManager();
 		inventory.addCompletedTransaction(transaction);
-		InventorySerializer serializer = new InventorySerializer();
+		PlainTextSerializer serializer = new PlainTextSerializer();
 
 		String result = serializer.serializeInventory(inventory);
 
@@ -160,7 +160,7 @@ public class TestSerializeInventory {
 		InventoryManager inventory = new InventoryManager();
 		inventory.addCompletedTransaction(transaction);
 		inventory.addCompletedTransaction(transaction2);
-		InventorySerializer serializer = new InventorySerializer();
+		PlainTextSerializer serializer = new PlainTextSerializer();
 
 		String result = serializer.serializeInventory(inventory);
 
@@ -182,7 +182,7 @@ public class TestSerializeInventory {
 		inventory.addFurniture(furniture);
 		inventory.addProduce(produce);
 		inventory.addCompletedTransaction(transaction);
-		InventorySerializer serializer = new InventorySerializer();
+		PlainTextSerializer serializer = new PlainTextSerializer();
 
 		String result = serializer.serializeInventory(inventory);
 
@@ -210,7 +210,7 @@ public class TestSerializeInventory {
 		inventory.addProduce(produce2);
 		inventory.addCompletedTransaction(transaction);
 		inventory.addCompletedTransaction(transaction2);
-		InventorySerializer serializer = new InventorySerializer();
+		PlainTextSerializer serializer = new PlainTextSerializer();
 
 		String result = serializer.serializeInventory(inventory);
 

@@ -2,7 +2,7 @@ package edu.westga.cs1302.inventory_management.model.products;
 
 import java.time.LocalDate;
 
-import edu.westga.cs1302.inventory_management.model.inventory_serialization.InventorySerializer;
+import edu.westga.cs1302.inventory_management.model.inventory_serialization.PlainTextSerializer;
 
 /**
  * Stores information for a produce product.
@@ -68,7 +68,7 @@ public class Produce extends Product {
 	 * 
 	 * @return string representation of the current produce object
 	 */
-	public String serialize(InventorySerializer inventorySerializer) {
+	public String serialize(PlainTextSerializer inventorySerializer) {
 		if (inventorySerializer == null) {
 			throw new IllegalArgumentException("invetory serializer cannot be null");
 		}

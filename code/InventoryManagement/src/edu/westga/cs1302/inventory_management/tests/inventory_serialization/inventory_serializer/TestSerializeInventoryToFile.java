@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import edu.westga.cs1302.inventory_management.model.InventoryManager;
 import edu.westga.cs1302.inventory_management.model.Transaction;
-import edu.westga.cs1302.inventory_management.model.inventory_serialization.InventorySerializer;
+import edu.westga.cs1302.inventory_management.model.inventory_serialization.PlainTextSerializer;
 import edu.westga.cs1302.inventory_management.model.products.Furniture;
 import edu.westga.cs1302.inventory_management.model.products.Produce;
 
@@ -18,7 +18,7 @@ public class TestSerializeInventoryToFile {
 
 	@Test
 	public void testNullInventory() {
-		InventorySerializer serializer = new InventorySerializer();
+		PlainTextSerializer serializer = new PlainTextSerializer();
 
 		assertThrows(IllegalArgumentException.class, () -> {
 			serializer.serializeTransaction(null);
@@ -28,7 +28,7 @@ public class TestSerializeInventoryToFile {
 	@Test
 	public void testEmptyInventory() throws IOException {
 		InventoryManager inventory = new InventoryManager();
-		InventorySerializer serializer = new InventorySerializer();
+		PlainTextSerializer serializer = new PlainTextSerializer();
 		String filename = "test-output-for-serialize-inventory-to-file.txt";
 
 		serializer.serializeInventoryToFile(filename, inventory);
@@ -64,7 +64,7 @@ public class TestSerializeInventoryToFile {
 		inventory.addProduce(produce2);
 		inventory.addCompletedTransaction(transaction);
 		inventory.addCompletedTransaction(transaction2);
-		InventorySerializer serializer = new InventorySerializer();
+		PlainTextSerializer serializer = new PlainTextSerializer();
 		String filename = "test-output-for-serialize-inventory-to-file.txt";
 
 		serializer.serializeInventoryToFile(filename, inventory);

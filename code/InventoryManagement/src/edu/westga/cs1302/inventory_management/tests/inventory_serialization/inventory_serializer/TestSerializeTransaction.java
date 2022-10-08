@@ -9,13 +9,13 @@ import edu.westga.cs1302.inventory_management.model.products.Produce;
 import edu.westga.cs1302.inventory_management.model.products.Product;
 import edu.westga.cs1302.inventory_management.model.products.Furniture;
 import edu.westga.cs1302.inventory_management.model.Transaction;
-import edu.westga.cs1302.inventory_management.model.inventory_serialization.InventorySerializer;
+import edu.westga.cs1302.inventory_management.model.inventory_serialization.PlainTextSerializer;
 
 public class TestSerializeTransaction {
 
 	@Test
 	public void testNullTransaction() {
-		InventorySerializer serializer = new InventorySerializer();
+		PlainTextSerializer serializer = new PlainTextSerializer();
 
 		assertThrows(IllegalArgumentException.class, () -> {
 			serializer.serializeTransaction(null);
@@ -25,7 +25,7 @@ public class TestSerializeTransaction {
 	@Test
 	public void testEmptyTransaction() {
 		Transaction transaction = new Transaction();
-		InventorySerializer serializer = new InventorySerializer();
+		PlainTextSerializer serializer = new PlainTextSerializer();
 
 		String result = serializer.serializeTransaction(transaction);
 
@@ -40,7 +40,7 @@ public class TestSerializeTransaction {
 		Product furniture = new Furniture(1, "name", 2, 3, false);
 		Transaction transaction = new Transaction();
 		transaction.addProduct(furniture);
-		InventorySerializer serializer = new InventorySerializer();
+		PlainTextSerializer serializer = new PlainTextSerializer();
 
 		String result = serializer.serializeTransaction(transaction);
 
@@ -58,7 +58,7 @@ public class TestSerializeTransaction {
 		Transaction transaction = new Transaction();
 		transaction.addProduct(furniture);
 		transaction.addProduct(furniture2);
-		InventorySerializer serializer = new InventorySerializer();
+		PlainTextSerializer serializer = new PlainTextSerializer();
 
 		String result = serializer.serializeTransaction(transaction);
 
@@ -76,7 +76,7 @@ public class TestSerializeTransaction {
 		Product produce = new Produce(1, "name", 2, expirationDate);
 		Transaction transaction = new Transaction();
 		transaction.addProduct(produce);
-		InventorySerializer serializer = new InventorySerializer();
+		PlainTextSerializer serializer = new PlainTextSerializer();
 
 		String result = serializer.serializeTransaction(transaction);
 
@@ -95,7 +95,7 @@ public class TestSerializeTransaction {
 		Transaction transaction = new Transaction();
 		transaction.addProduct(produce);
 		transaction.addProduct(produce2);
-		InventorySerializer serializer = new InventorySerializer();
+		PlainTextSerializer serializer = new PlainTextSerializer();
 
 		String result = serializer.serializeTransaction(transaction);
 
@@ -115,7 +115,7 @@ public class TestSerializeTransaction {
 		Transaction transaction = new Transaction();
 		transaction.addProduct(furniture);
 		transaction.addProduct(produce);
-		InventorySerializer serializer = new InventorySerializer();
+		PlainTextSerializer serializer = new PlainTextSerializer();
 
 		String result = serializer.serializeTransaction(transaction);
 
@@ -139,7 +139,7 @@ public class TestSerializeTransaction {
 		transaction.addProduct(furniture2);
 		transaction.addProduct(produce);
 		transaction.addProduct(produce2);
-		InventorySerializer serializer = new InventorySerializer();
+		PlainTextSerializer serializer = new PlainTextSerializer();
 
 		String result = serializer.serializeTransaction(transaction);
 

@@ -2,7 +2,7 @@ package edu.westga.cs1302.inventory_management.model.products;
 
 import java.util.Random;
 
-import edu.westga.cs1302.inventory_management.model.inventory_serialization.InventorySerializer;
+import edu.westga.cs1302.inventory_management.model.inventory_serialization.PlainTextSerializer;
 
 /**
  * A project object
@@ -86,7 +86,7 @@ public abstract class Product {
 	 * 
 	 * @return string representation of the current produce object
 	 */
-	public abstract String serialize(InventorySerializer inventorySerializer);
+	public abstract String serialize(PlainTextSerializer inventorySerializer);
 	
 	/**
 	 * Gets the id of the Produce product
