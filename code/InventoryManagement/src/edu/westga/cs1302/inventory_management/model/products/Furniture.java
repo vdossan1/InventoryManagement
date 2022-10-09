@@ -1,6 +1,5 @@
 package edu.westga.cs1302.inventory_management.model.products;
 
-import edu.westga.cs1302.inventory_management.model.inventory_serialization.PlainTextSerializer;
 import edu.westga.cs1302.inventory_management.model.inventory_serialization.Serializer;
 
 /**

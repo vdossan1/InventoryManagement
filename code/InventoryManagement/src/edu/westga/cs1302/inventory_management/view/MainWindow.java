@@ -11,6 +11,7 @@ import edu.westga.cs1302.inventory_management.model.products.ProductType;
 import edu.westga.cs1302.inventory_management.model.Transaction;
 import edu.westga.cs1302.inventory_management.model.inventory_serialization.PlainTextSerializer;
 import edu.westga.cs1302.inventory_management.model.inventory_serialization.Serializer;
+import edu.westga.cs1302.inventory_management.model.inventory_serialization.XmlSerializer;
 import edu.westga.cs1302.inventory_management.model.InventoryManager;
 
 import javafx.event.ActionEvent;
@@ -19,10 +20,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
 
 /**
  * Maps Model behavior to the MainWindow view.
@@ -311,6 +310,7 @@ public class MainWindow {
 		this.currentTransaction = new Transaction();
 		
 		this.fileType.getItems().add(new PlainTextSerializer());
+		this.fileType.getItems().add(new XmlSerializer());
 		this.fileType.setValue(this.fileType.getItems().get(0));
 
 	}

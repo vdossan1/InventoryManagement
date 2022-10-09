@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 
 import edu.westga.cs1302.inventory_management.model.InventoryManager;
 import edu.westga.cs1302.inventory_management.model.Transaction;
-import edu.westga.cs1302.inventory_management.model.inventory_serialization.PlainTextSerializer;
 import edu.westga.cs1302.inventory_management.model.inventory_serialization.Serializer;
 import edu.westga.cs1302.inventory_management.model.inventory_serialization.XmlSerializer;
 import edu.westga.cs1302.inventory_management.model.products.Furniture;
