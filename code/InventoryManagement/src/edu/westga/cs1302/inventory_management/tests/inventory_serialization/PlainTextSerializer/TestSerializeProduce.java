@@ -1,4 +1,4 @@
-package edu.westga.cs1302.inventory_management.tests.inventory_serialization.inventory_serializer;
+package edu.westga.cs1302.inventory_management.tests.inventory_serialization.PlainTextSerializer;
 
 import java.time.LocalDate;
 

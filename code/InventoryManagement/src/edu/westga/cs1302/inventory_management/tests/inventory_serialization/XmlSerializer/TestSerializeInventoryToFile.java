@@ -1,24 +1,27 @@
-package edu.westga.cs1302.inventory_management.tests.inventory_serialization.inventory_serializer;
+package edu.westga.cs1302.inventory_management.tests.inventory_serialization.XmlSerializer;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Scanner;
 
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import edu.westga.cs1302.inventory_management.model.InventoryManager;
 import edu.westga.cs1302.inventory_management.model.Transaction;
 import edu.westga.cs1302.inventory_management.model.inventory_serialization.PlainTextSerializer;
+import edu.westga.cs1302.inventory_management.model.inventory_serialization.Serializer;
+import edu.westga.cs1302.inventory_management.model.inventory_serialization.XmlSerializer;
 import edu.westga.cs1302.inventory_management.model.products.Furniture;
 import edu.westga.cs1302.inventory_management.model.products.Produce;
 
-public class TestSerializeInventoryToFile {
+class TestSerializeInventoryToFile {
 
 	@Test
 	public void testNullInventory() {
-		PlainTextSerializer serializer = new PlainTextSerializer();
+		Serializer serializer = new XmlSerializer();
 
 		assertThrows(IllegalArgumentException.class, () -> {
 			serializer.serializeTransaction(null);
@@ -28,7 +31,7 @@ public class TestSerializeInventoryToFile {
 	@Test
 	public void testEmptyInventory() throws IOException {
 		InventoryManager inventory = new InventoryManager();
-		PlainTextSerializer serializer = new PlainTextSerializer();
+		Serializer serializer = new XmlSerializer();
 		String filename = "test-output-for-serialize-inventory-to-file.txt";
 
 		serializer.serializeInventoryToFile(filename, inventory);
@@ -44,8 +47,13 @@ public class TestSerializeInventoryToFile {
 			e.printStackTrace();
 			fail("Unexpected IOException: " + e.getMessage());
 		}
-
-		assertEquals("", result);
+		
+		String expected =  "<Inventory>" 
+							+ System.lineSeparator()
+							+ "</Inventory>"
+							+ System.lineSeparator();
+		
+		assertEquals(expected, result);
 	}
 
 	@Test
@@ -64,7 +72,7 @@ public class TestSerializeInventoryToFile {
 		inventory.addProduce(produce2);
 		inventory.addCompletedTransaction(transaction);
 		inventory.addCompletedTransaction(transaction2);
-		PlainTextSerializer serializer = new PlainTextSerializer();
+		Serializer serializer = new XmlSerializer();
 		String filename = "test-output-for-serialize-inventory-to-file.txt";
 
 		serializer.serializeInventoryToFile(filename, inventory);
@@ -85,14 +93,16 @@ public class TestSerializeInventoryToFile {
 			fail("Unexpected IOException: " + e.getMessage());
 		}
 
-		String expected = "PRODUCE 1 name 2 2 12 2017" + System.lineSeparator();
-		expected += "PRODUCE 2 name 2 2 12 2017" + System.lineSeparator();
-		expected += "FURNITURE 1 name 2 false 3"  + System.lineSeparator();
-		expected += "FURNITURE 2 name 2 false 3" + System.lineSeparator();
-		expected += "BEGIN-TRANSACTION" + System.lineSeparator();
-		expected += "END-TRANSACTION" + System.lineSeparator();
-		expected += "BEGIN-TRANSACTION" + System.lineSeparator();
-		expected += "END-TRANSACTION";
+		String expected = "<Inventory>" + System.lineSeparator()
+							+ "<Produce id=1 name=name cost=2 expirationMonth=2 expirationDay=12 expirationYear=2017/>" + System.lineSeparator()
+							+ "<Produce id=2 name=name cost=2 expirationMonth=2 expirationDay=12 expirationYear=2017/>" + System.lineSeparator()
+							+ "<Furniture id=1 name=name cost=2 assembled=false assemblyCost=3/>" + System.lineSeparator()
+							+ "<Furniture id=2 name=name cost=2 assembled=false assemblyCost=3/>" + System.lineSeparator()
+							+ "<Transaction>" + System.lineSeparator()
+							+ "</Transaction>" + System.lineSeparator()
+							+ "<Transaction>" + System.lineSeparator()
+							+ "</Transaction>" + System.lineSeparator()
+							+ "</Inventory>";
 
 		assertEquals(expected, result);
 

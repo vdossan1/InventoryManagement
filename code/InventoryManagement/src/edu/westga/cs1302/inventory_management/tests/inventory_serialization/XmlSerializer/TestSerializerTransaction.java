@@ -1,21 +1,24 @@
-package edu.westga.cs1302.inventory_management.tests.inventory_serialization.inventory_serializer;
+package edu.westga.cs1302.inventory_management.tests.inventory_serialization.XmlSerializer;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
-import edu.westga.cs1302.inventory_management.model.products.Produce;
-import edu.westga.cs1302.inventory_management.model.products.Product;
-import edu.westga.cs1302.inventory_management.model.products.Furniture;
 import edu.westga.cs1302.inventory_management.model.Transaction;
 import edu.westga.cs1302.inventory_management.model.inventory_serialization.PlainTextSerializer;
+import edu.westga.cs1302.inventory_management.model.inventory_serialization.Serializer;
+import edu.westga.cs1302.inventory_management.model.inventory_serialization.XmlSerializer;
+import edu.westga.cs1302.inventory_management.model.products.Furniture;
+import edu.westga.cs1302.inventory_management.model.products.Produce;
+import edu.westga.cs1302.inventory_management.model.products.Product;
 
-public class TestSerializeTransaction {
+class TestSerializerTransaction {
 
 	@Test
 	public void testNullTransaction() {
-		PlainTextSerializer serializer = new PlainTextSerializer();
+		Serializer serializer = new XmlSerializer();
 
 		assertThrows(IllegalArgumentException.class, () -> {
 			serializer.serializeTransaction(null);
@@ -25,12 +28,12 @@ public class TestSerializeTransaction {
 	@Test
 	public void testEmptyTransaction() {
 		Transaction transaction = new Transaction();
-		PlainTextSerializer serializer = new PlainTextSerializer();
+		Serializer serializer = new XmlSerializer();
 
 		String result = serializer.serializeTransaction(transaction);
 
-		String expected = "BEGIN-TRANSACTION" + System.lineSeparator();
-		expected += "END-TRANSACTION";
+		String expected = "<Transaction>" + System.lineSeparator()
+							+ "</Transaction>";
 
 		assertEquals(expected, result);
 	}
@@ -40,13 +43,13 @@ public class TestSerializeTransaction {
 		Product furniture = new Furniture(1, "name", 2, 3, false);
 		Transaction transaction = new Transaction();
 		transaction.addProduct(furniture);
-		PlainTextSerializer serializer = new PlainTextSerializer();
+		Serializer serializer = new XmlSerializer();
 
 		String result = serializer.serializeTransaction(transaction);
 
-		String expected = "BEGIN-TRANSACTION" + System.lineSeparator();
-		expected += "FURNITURE 1 name 2 false 3"  + System.lineSeparator();
-		expected += "END-TRANSACTION";
+		String expected = "<Transaction>" + System.lineSeparator()
+							+ "<Furniture id=1 name=name cost=2 assembled=false assemblyCost=3/>" + System.lineSeparator()
+							+ "</Transaction>";
 
 		assertEquals( expected, result);
 	}
@@ -58,14 +61,14 @@ public class TestSerializeTransaction {
 		Transaction transaction = new Transaction();
 		transaction.addProduct(furniture);
 		transaction.addProduct(furniture2);
-		PlainTextSerializer serializer = new PlainTextSerializer();
+		Serializer serializer = new XmlSerializer();
 
 		String result = serializer.serializeTransaction(transaction);
 
-		String expected = "BEGIN-TRANSACTION" + System.lineSeparator();
-		expected += "FURNITURE 1 name 2 false 3"  + System.lineSeparator();
-		expected += "FURNITURE 2 name 2 false 3"  + System.lineSeparator();
-		expected += "END-TRANSACTION";
+		String expected = "<Transaction>" + System.lineSeparator()
+							+ "<Furniture id=1 name=name cost=2 assembled=false assemblyCost=3/>" + System.lineSeparator()
+							+ "<Furniture id=2 name=name cost=2 assembled=false assemblyCost=3/>" + System.lineSeparator()
+							+ "</Transaction>";
 
 		assertEquals( expected, result);
 	}
@@ -76,13 +79,13 @@ public class TestSerializeTransaction {
 		Product produce = new Produce(1, "name", 2, expirationDate);
 		Transaction transaction = new Transaction();
 		transaction.addProduct(produce);
-		PlainTextSerializer serializer = new PlainTextSerializer();
+		Serializer serializer = new XmlSerializer();
 
 		String result = serializer.serializeTransaction(transaction);
 
-		String expected = "BEGIN-TRANSACTION" + System.lineSeparator();
-		expected += "PRODUCE 1 name 2 2 12 2017" + System.lineSeparator();
-		expected += "END-TRANSACTION";
+		String expected = "<Transaction>" + System.lineSeparator()
+							+ "<Produce id=1 name=name cost=2 expirationMonth=2 expirationDay=12 expirationYear=2017/>" + System.lineSeparator()
+							+ "</Transaction>";
 
 		assertEquals( expected, result);
 	}
@@ -95,14 +98,14 @@ public class TestSerializeTransaction {
 		Transaction transaction = new Transaction();
 		transaction.addProduct(produce);
 		transaction.addProduct(produce2);
-		PlainTextSerializer serializer = new PlainTextSerializer();
+		Serializer serializer = new XmlSerializer();
 
 		String result = serializer.serializeTransaction(transaction);
 
-		String expected = "BEGIN-TRANSACTION" + System.lineSeparator();
-		expected += "PRODUCE 1 name 2 2 12 2017" + System.lineSeparator();
-		expected += "PRODUCE 2 name 2 2 12 2017" + System.lineSeparator();
-		expected += "END-TRANSACTION";
+		String expected = "<Transaction>" + System.lineSeparator()
+							+ "<Produce id=1 name=name cost=2 expirationMonth=2 expirationDay=12 expirationYear=2017/>" + System.lineSeparator()
+							+ "<Produce id=2 name=name cost=2 expirationMonth=2 expirationDay=12 expirationYear=2017/>" + System.lineSeparator()
+							+ "</Transaction>";
 
 		assertEquals( expected, result);
 	}
@@ -115,14 +118,14 @@ public class TestSerializeTransaction {
 		Transaction transaction = new Transaction();
 		transaction.addProduct(furniture);
 		transaction.addProduct(produce);
-		PlainTextSerializer serializer = new PlainTextSerializer();
+		Serializer serializer = new XmlSerializer();
 
 		String result = serializer.serializeTransaction(transaction);
 
-		String expected = "BEGIN-TRANSACTION" + System.lineSeparator();
-		expected += "FURNITURE 1 name 2 false 3"  + System.lineSeparator();
-		expected += "PRODUCE 1 name 2 2 12 2017" + System.lineSeparator();
-		expected += "END-TRANSACTION";
+		String expected = "<Transaction>" + System.lineSeparator()
+							+ "<Furniture id=1 name=name cost=2 assembled=false assemblyCost=3/>" + System.lineSeparator()
+							+ "<Produce id=1 name=name cost=2 expirationMonth=2 expirationDay=12 expirationYear=2017/>" + System.lineSeparator()
+							+ "</Transaction>";
 
 		assertEquals( expected, result);
 	}
@@ -139,16 +142,16 @@ public class TestSerializeTransaction {
 		transaction.addProduct(furniture2);
 		transaction.addProduct(produce);
 		transaction.addProduct(produce2);
-		PlainTextSerializer serializer = new PlainTextSerializer();
+		Serializer serializer = new XmlSerializer();
 
 		String result = serializer.serializeTransaction(transaction);
 
-		String expected = "BEGIN-TRANSACTION" + System.lineSeparator();
-		expected += "FURNITURE 1 name 2 false 3"  + System.lineSeparator();
-		expected += "FURNITURE 2 name 2 false 3"  + System.lineSeparator();
-		expected += "PRODUCE 1 name 2 2 12 2017" + System.lineSeparator();
-		expected += "PRODUCE 2 name 2 2 12 2017" + System.lineSeparator();
-		expected += "END-TRANSACTION";
+		String expected = "<Transaction>" + System.lineSeparator()
+							+ "<Furniture id=1 name=name cost=2 assembled=false assemblyCost=3/>" + System.lineSeparator()
+							+ "<Furniture id=2 name=name cost=2 assembled=false assemblyCost=3/>" + System.lineSeparator()
+							+ "<Produce id=1 name=name cost=2 expirationMonth=2 expirationDay=12 expirationYear=2017/>" + System.lineSeparator()
+							+ "<Produce id=2 name=name cost=2 expirationMonth=2 expirationDay=12 expirationYear=2017/>" + System.lineSeparator()
+							+ "</Transaction>";
 
 		assertEquals( expected, result);
 	}

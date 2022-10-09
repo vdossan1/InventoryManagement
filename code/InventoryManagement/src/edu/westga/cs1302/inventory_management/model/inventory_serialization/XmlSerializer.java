@@ -68,7 +68,7 @@ public class XmlSerializer implements Serializer {
 		furniture += XmlSerializer.NAME_XML + furnitureItem.getName() + " ";
 		furniture += XmlSerializer.COST_XML + furnitureItem.getCost() + " ";
 		furniture += "assembled=" + furnitureItem.isAssembled() + " ";
-		furniture += "assemblyCost" + furnitureItem.getAssemblyCost() + XmlSerializer.CLOSE_TAG;
+		furniture += "assemblyCost=" + furnitureItem.getAssemblyCost() + XmlSerializer.CLOSE_TAG;
 		return furniture;
 	}
 
@@ -139,7 +139,7 @@ public class XmlSerializer implements Serializer {
 			inventory += this.serializeTransaction(transactionItem);
 		}
 		
-		inventory += "</Inventory>";
+		inventory += System.lineSeparator() + "</Inventory>";
 		return inventory;
 	}
 
