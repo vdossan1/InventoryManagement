@@ -1,5 +1,6 @@
 package edu.westga.cs1302.inventory_management.model.products;
 
+import edu.westga.cs1302.inventory_management.model.inventory_serialization.CharacterUtility;
 import edu.westga.cs1302.inventory_management.model.inventory_serialization.Serializer;
 
 /**
@@ -10,6 +11,7 @@ import edu.westga.cs1302.inventory_management.model.inventory_serialization.Seri
  */
 public class Furniture extends Product {
 	
+	private int cost;
 	private int assemblyCost;
 	private boolean assembled;
 
@@ -25,13 +27,19 @@ public class Furniture extends Product {
 	 * @param assembled    if the furniture is assembled
 	 */
 	public Furniture(String name, int cost, int assemblyCost, boolean assembled) {
-		super(name, cost);
+		super(name);
+		
+		if (cost < 1) {
+			throw new IllegalArgumentException(CharacterUtility.INVALID_COST);
+		}
 		
 		if (assemblyCost < 1) {
 			throw new IllegalArgumentException("Invalid assembly cost");
 		}
+		
 		this.assemblyCost = assemblyCost;
 		this.assembled = assembled;
+		this.cost = cost;
 	}
 
 	/**
@@ -48,12 +56,17 @@ public class Furniture extends Product {
 	 * @param assembled    if the furniture is assembled
 	 */
 	public Furniture(int id, String name, int cost, int assemblyCost, boolean assembled) {
-		super(id, name, cost);
+		super(id, name);
 		
 		if (assemblyCost < 1) {
 			throw new IllegalArgumentException("Assembly Cost must be positive");
 		}
 		
+		if (cost < 1) {
+			throw new IllegalArgumentException("Invalid cost");
+		}
+		
+		this.cost = cost;
 		this.assembled = assembled;
 		this.assemblyCost = assemblyCost;
 	}

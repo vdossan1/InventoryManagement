@@ -86,13 +86,13 @@ public class PlainTextSerializer implements Serializer {
 			throw new IllegalArgumentException("Must provide a Transaction object");
 		}
 		
-		String transaction = "BEGIN-TRANSACTION" + System.lineSeparator();
+		String transaction = CharacterUtility.BEGIN_TRANSACTION + System.lineSeparator();
 
 		for (Product productItem: transactionItem.getProduct()) {
 			transaction += productItem.serialize(this) + System.lineSeparator();
 		}
 
-		transaction += "END-TRANSACTION";
+		transaction += CharacterUtility.END_TRANSACTION;
 
 		return transaction;
 	}

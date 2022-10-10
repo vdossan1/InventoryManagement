@@ -1,3 +1,4 @@
+
 package edu.westga.cs1302.inventory_management.model.inventory_serialization;
 
 import java.io.FileWriter;

@@ -2,6 +2,7 @@ package edu.westga.cs1302.inventory_management.model.products;
 
 import java.time.LocalDate;
 
+import edu.westga.cs1302.inventory_management.model.inventory_serialization.CharacterUtility;
 import edu.westga.cs1302.inventory_management.model.inventory_serialization.Serializer;
 
 /**
@@ -13,6 +14,7 @@ import edu.westga.cs1302.inventory_management.model.inventory_serialization.Seri
 public class Produce extends Product {
 	
 	private LocalDate expirationDate;
+	private int cost;
 
 	/**
 	 * Creates a new Produce product
@@ -25,12 +27,17 @@ public class Produce extends Product {
 	 * @param expirationDate expiration date for the product
 	 */
 	public Produce(String name, int cost, LocalDate expirationDate) {
-		super(name, cost);
+		super(name);
 		
 		if (expirationDate == null) {
 			throw new IllegalArgumentException("Invalid date");
 		}
 		
+		if (cost < 1) {
+			throw new IllegalArgumentException(CharacterUtility.INVALID_COST);
+		}
+		
+		this.cost = cost;
 		this.expirationDate = expirationDate;
 		
 	}
@@ -47,12 +54,17 @@ public class Produce extends Product {
 	 * @param expirationDate expiration date for the product
 	 */
 	public Produce(int id, String name, int cost, LocalDate expirationDate) {
-		super(id, name, cost);
+		super(id, name);
 		
 		if (expirationDate == null) {
 			throw new IllegalArgumentException("Expiration date must not be null");
 		}
 		
+		if (cost < 1) {
+			throw new IllegalArgumentException("Invalid cost");
+		}
+		
+		this.cost = cost;
 		this.expirationDate = expirationDate;
 		
 	}

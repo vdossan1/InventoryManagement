@@ -15,7 +15,6 @@ public abstract class Product {
 	
 	private int id;
 	private String name;
-	protected int cost;
 	
 	/**
 	 * Creates a new Product
@@ -24,18 +23,13 @@ public abstract class Product {
 	 * @postcondition getName() == name && getCost() == cost && getId() > 0
 	 *
 	 * @param name           name of the product
-	 * @param cost           cost of the product in pennies
 	 */
-	public Product(String name, int cost) {
+	public Product(String name) {
 		if (name == null || name.length() < 1) {
 			throw new IllegalArgumentException("Invalid name");
 		}
-		if (cost < 1) {
-			throw new IllegalArgumentException("Invalid cost");
-		}
 		
 		this.name = name;
-		this.cost = cost;
 		this.id = (new Random()).nextInt(Integer.MAX_VALUE) + 1;
 	}
 	
@@ -47,14 +41,10 @@ public abstract class Product {
 	 *
 	 * @param id             id of the product
 	 * @param name           name of the product
-	 * @param cost           cost of the product in pennies
 	 */
-	public Product(int id, String name, int cost) {
+	public Product(int id, String name) {
 		if (name == null || name.length() < 1) {
 			throw new IllegalArgumentException("Name must not be null");
-		}
-		if (cost < 1) {
-			throw new IllegalArgumentException("Cost must be positive");
 		}
 		
 		if (id < 1) {
@@ -62,7 +52,6 @@ public abstract class Product {
 		}
 		
 		this.name = name;
-		this.cost = cost;
 		this.id = id;
 	}
 	

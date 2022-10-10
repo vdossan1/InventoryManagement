@@ -15,11 +15,6 @@ import edu.westga.cs1302.inventory_management.model.products.Product;
  *
  */
 public class XmlSerializer implements Serializer {
-	
-	private static final String ID_XML = "id=";
-	private static final String NAME_XML = "name=";
-	private static final String COST_XML = "cost=";
-	private static final String CLOSE_TAG = "/>";
 
 	/**
 	 * Converts a produce object to a XML format string representation. The string will use the
@@ -37,13 +32,13 @@ public class XmlSerializer implements Serializer {
 		if (produceItem == null) {
 			throw new IllegalArgumentException("Must provide a Produce object");
 		}
-		String produce = "<Produce ";
-		produce += XmlSerializer.ID_XML + produceItem.getId() + " ";
-		produce += XmlSerializer.NAME_XML + produceItem.getName() + " ";
-		produce += XmlSerializer.COST_XML + produceItem.getCost() + " ";
+		String produce = CharacterUtility.PRODUCE_OPEN_TAG;
+		produce += CharacterUtility.ID_XML + produceItem.getId() + " ";
+		produce += CharacterUtility.NAME_XML + produceItem.getName() + " ";
+		produce += CharacterUtility.COST_XML + produceItem.getCost() + " ";
 		produce += "expirationMonth=" + produceItem.getExpirationDate().getMonthValue() + " ";
 		produce += "expirationDay=" + produceItem.getExpirationDate().getDayOfMonth() + " ";
-		produce += "expirationYear=" + produceItem.getExpirationDate().getYear() + XmlSerializer.CLOSE_TAG;
+		produce += "expirationYear=" + produceItem.getExpirationDate().getYear() + CharacterUtility.CLOSE_TAG;
 		return produce;
 	}
 
@@ -63,12 +58,12 @@ public class XmlSerializer implements Serializer {
 		if (furnitureItem == null) {
 			throw new IllegalArgumentException("Must provide a Furniture object");
 		}
-		String furniture = "<Furniture ";
-		furniture += XmlSerializer.ID_XML + furnitureItem.getId() + " ";
-		furniture += XmlSerializer.NAME_XML + furnitureItem.getName() + " ";
-		furniture += XmlSerializer.COST_XML + furnitureItem.getCost() + " ";
+		String furniture = CharacterUtility.FURNITURE_OPEN_TAG;
+		furniture += CharacterUtility.ID_XML + furnitureItem.getId() + " ";
+		furniture += CharacterUtility.NAME_XML + furnitureItem.getName() + " ";
+		furniture += CharacterUtility.COST_XML + furnitureItem.getCost() + " ";
 		furniture += "assembled=" + furnitureItem.isAssembled() + " ";
-		furniture += "assemblyCost=" + furnitureItem.getAssemblyCost() + XmlSerializer.CLOSE_TAG;
+		furniture += "assemblyCost=" + furnitureItem.getAssemblyCost() + CharacterUtility.CLOSE_TAG;
 		return furniture;
 	}
 
@@ -91,13 +86,13 @@ public class XmlSerializer implements Serializer {
 			throw new IllegalArgumentException("Must provide a Transaction object");
 		}
 		
-		String transaction = "<Transaction>" + System.lineSeparator();
+		String transaction = CharacterUtility.TRANSACTION_OPENING_TAG + System.lineSeparator();
 
 		for (Product productItem: transactionItem.getProduct()) {
 			transaction += productItem.serialize(this) + System.lineSeparator();
 		}
 
-		transaction += "</Transaction>";
+		transaction += CharacterUtility.TRANSACTION_CLOSING_TAG;
 
 		return transaction;
 	}
@@ -122,7 +117,7 @@ public class XmlSerializer implements Serializer {
 		}
 		String inventory = "";
 		
-		inventory += "<Inventory>";
+		inventory += CharacterUtility.INVENTORY_OPENING_TAG;
 		
 		for (Produce produceItem : inventoryManager.getProduce()) {
 			inventory = this.addNewlineIfNotFirstItem(inventory);
@@ -139,7 +134,7 @@ public class XmlSerializer implements Serializer {
 			inventory += this.serializeTransaction(transactionItem);
 		}
 		
-		inventory += System.lineSeparator() + "</Inventory>";
+		inventory += System.lineSeparator() + CharacterUtility.INVENTORY_CLOSING_TAG;
 		return inventory;
 	}
 

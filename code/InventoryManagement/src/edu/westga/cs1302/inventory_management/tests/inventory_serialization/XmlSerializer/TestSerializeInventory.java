@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import edu.westga.cs1302.inventory_management.model.InventoryManager;
 import edu.westga.cs1302.inventory_management.model.Transaction;
+import edu.westga.cs1302.inventory_management.model.inventory_serialization.CharacterUtility;
 import edu.westga.cs1302.inventory_management.model.inventory_serialization.Serializer;
 import edu.westga.cs1302.inventory_management.model.inventory_serialization.XmlSerializer;
 import edu.westga.cs1302.inventory_management.model.products.Furniture;
@@ -30,9 +31,9 @@ class TestSerializeInventory {
 		Serializer serializer = new XmlSerializer();
 
 		String result = serializer.serializeInventory(inventory);
-		String expected =  "<Inventory>" 
+		String expected =  CharacterUtility.INVENTORY_OPENING_TAG 
 							+ System.lineSeparator()
-							+ "</Inventory>";
+							+ CharacterUtility.INVENTORY_CLOSING_TAG;
 		
 		assertEquals(expected, result);
 	}
@@ -46,9 +47,9 @@ class TestSerializeInventory {
 
 		String result = serializer.serializeInventory(inventory);
 
-		String expected = "<Inventory>" + System.lineSeparator() 
-				+ "<Furniture id=1 name=name cost=2 assembled=false assemblyCost=3/>" + System.lineSeparator()
-				+ "</Inventory>";
+		String expected = CharacterUtility.INVENTORY_OPENING_TAG + System.lineSeparator() 
+				+ CharacterUtility.FURNITURE_ID_ONE + System.lineSeparator()
+				+ CharacterUtility.INVENTORY_CLOSING_TAG;
 		
 		assertEquals(expected, result);
 	}
@@ -64,10 +65,10 @@ class TestSerializeInventory {
 
 		String result = serializer.serializeInventory(inventory);
 
-		String expected = "<Inventory>" + System.lineSeparator() 
-		+ "<Furniture id=1 name=name cost=2 assembled=false assemblyCost=3/>" + System.lineSeparator()
-		+ "<Furniture id=2 name=name cost=2 assembled=false assemblyCost=3/>" + System.lineSeparator()
-		+ "</Inventory>";
+		String expected = CharacterUtility.INVENTORY_OPENING_TAG + System.lineSeparator() 
+		+ CharacterUtility.FURNITURE_ID_ONE + System.lineSeparator()
+		+ CharacterUtility.FURNITURE_ID_TWO + System.lineSeparator()
+		+ CharacterUtility.INVENTORY_CLOSING_TAG;
 
 		assertEquals(expected, result);
 	}
@@ -82,9 +83,9 @@ class TestSerializeInventory {
 
 		String result = serializer.serializeInventory(inventory);
 
-		String expected = "<Inventory>" + System.lineSeparator()
-							+ "<Produce id=1 name=name cost=2 expirationMonth=2 expirationDay=12 expirationYear=2017/>" + System.lineSeparator()
-							+ "</Inventory>";
+		String expected = CharacterUtility.INVENTORY_OPENING_TAG + System.lineSeparator()
+							+ CharacterUtility.PRODUCE_ID_ONE + System.lineSeparator()
+							+ CharacterUtility.INVENTORY_CLOSING_TAG;
 			
 		assertEquals(expected, result);
 	}
@@ -101,10 +102,10 @@ class TestSerializeInventory {
 
 		String result = serializer.serializeInventory(inventory);
 
-		String expected = "<Inventory>" + System.lineSeparator() 
-							+ "<Produce id=1 name=name cost=2 expirationMonth=2 expirationDay=12 expirationYear=2017/>" + System.lineSeparator()
-							+ "<Produce id=2 name=name cost=2 expirationMonth=2 expirationDay=12 expirationYear=2017/>" + System.lineSeparator()
-							+ "</Inventory>";
+		String expected = CharacterUtility.INVENTORY_OPENING_TAG + System.lineSeparator() 
+							+ CharacterUtility.PRODUCE_ID_ONE + System.lineSeparator()
+							+ CharacterUtility.PRODUCE_ID_TWO + System.lineSeparator()
+							+ CharacterUtility.INVENTORY_CLOSING_TAG;
 
 		assertEquals(expected, result);
 	}
@@ -121,10 +122,10 @@ class TestSerializeInventory {
 
 		String result = serializer.serializeInventory(inventory);
 
-		String expected = "<Inventory>" + System.lineSeparator() 
-							+ "<Produce id=1 name=name cost=2 expirationMonth=2 expirationDay=12 expirationYear=2017/>" + System.lineSeparator()
-							+ "<Furniture id=1 name=name cost=2 assembled=false assemblyCost=3/>" + System.lineSeparator()
-							+ "</Inventory>";
+		String expected = CharacterUtility.INVENTORY_OPENING_TAG + System.lineSeparator() 
+							+ CharacterUtility.PRODUCE_ID_ONE + System.lineSeparator()
+							+ CharacterUtility.FURNITURE_ID_ONE + System.lineSeparator()
+							+ CharacterUtility.INVENTORY_CLOSING_TAG;
 
 		assertEquals( expected, result);
 	}
@@ -145,12 +146,12 @@ class TestSerializeInventory {
 
 		String result = serializer.serializeInventory(inventory);
 
-		String expected = "<Inventory>" + System.lineSeparator() 
-							+ "<Produce id=1 name=name cost=2 expirationMonth=2 expirationDay=12 expirationYear=2017/>" + System.lineSeparator()
-							+ "<Produce id=2 name=name cost=2 expirationMonth=2 expirationDay=12 expirationYear=2017/>" + System.lineSeparator()
-							+ "<Furniture id=1 name=name cost=2 assembled=false assemblyCost=3/>" + System.lineSeparator()
-							+ "<Furniture id=2 name=name cost=2 assembled=false assemblyCost=3/>" + System.lineSeparator()
-							+ "</Inventory>";
+		String expected = CharacterUtility.INVENTORY_OPENING_TAG + System.lineSeparator() 
+							+ CharacterUtility.PRODUCE_ID_ONE + System.lineSeparator()
+							+ CharacterUtility.PRODUCE_ID_TWO + System.lineSeparator()
+							+ CharacterUtility.FURNITURE_ID_ONE + System.lineSeparator()
+							+ CharacterUtility.FURNITURE_ID_TWO + System.lineSeparator()
+							+ CharacterUtility.INVENTORY_CLOSING_TAG;
 
 		assertEquals( expected, result);
 	}
@@ -164,10 +165,10 @@ class TestSerializeInventory {
 
 		String result = serializer.serializeInventory(inventory);
 
-		String expected = "<Inventory>" + System.lineSeparator()
-							+ "<Transaction>" + System.lineSeparator()
-							+ "</Transaction>" + System.lineSeparator()
-							+ "</Inventory>";
+		String expected = CharacterUtility.INVENTORY_OPENING_TAG + System.lineSeparator()
+							+ CharacterUtility.TRANSACTION_OPENING_TAG + System.lineSeparator()
+							+ CharacterUtility.TRANSACTION_CLOSING_TAG + System.lineSeparator()
+							+ CharacterUtility.INVENTORY_CLOSING_TAG;
 
 		assertEquals(expected, result);
 	}
@@ -183,12 +184,12 @@ class TestSerializeInventory {
 
 		String result = serializer.serializeInventory(inventory);
 
-		String expected = "<Inventory>" + System.lineSeparator()
-							+ "<Transaction>" + System.lineSeparator()
-							+ "</Transaction>" + System.lineSeparator()
-							+ "<Transaction>" + System.lineSeparator()
-							+ "</Transaction>" + System.lineSeparator()
-							+ "</Inventory>";
+		String expected = CharacterUtility.INVENTORY_OPENING_TAG + System.lineSeparator()
+							+ CharacterUtility.TRANSACTION_OPENING_TAG + System.lineSeparator()
+							+ CharacterUtility.TRANSACTION_CLOSING_TAG + System.lineSeparator()
+							+ CharacterUtility.TRANSACTION_OPENING_TAG + System.lineSeparator()
+							+ CharacterUtility.TRANSACTION_CLOSING_TAG + System.lineSeparator()
+							+ CharacterUtility.INVENTORY_CLOSING_TAG;
 
 		assertEquals( expected, result);
 	}
@@ -207,12 +208,12 @@ class TestSerializeInventory {
 
 		String result = serializer.serializeInventory(inventory);
 
-		String expected = "<Inventory>" + System.lineSeparator()
-							+ "<Produce id=1 name=name cost=2 expirationMonth=2 expirationDay=12 expirationYear=2017/>" + System.lineSeparator()
-							+ "<Furniture id=1 name=name cost=2 assembled=false assemblyCost=3/>" + System.lineSeparator()
-							+ "<Transaction>" + System.lineSeparator()
-							+ "</Transaction>" + System.lineSeparator()
-							+ "</Inventory>";
+		String expected = CharacterUtility.INVENTORY_OPENING_TAG + System.lineSeparator()
+							+ CharacterUtility.PRODUCE_ID_ONE + System.lineSeparator()
+							+ CharacterUtility.FURNITURE_ID_ONE + System.lineSeparator()
+							+ CharacterUtility.TRANSACTION_OPENING_TAG + System.lineSeparator()
+							+ CharacterUtility.TRANSACTION_CLOSING_TAG + System.lineSeparator()
+							+ CharacterUtility.INVENTORY_CLOSING_TAG;
 
 		assertEquals(expected, result);
 	}
@@ -237,16 +238,16 @@ class TestSerializeInventory {
 
 		String result = serializer.serializeInventory(inventory);
 
-		String expected = "<Inventory>" + System.lineSeparator()
-							+ "<Produce id=1 name=name cost=2 expirationMonth=2 expirationDay=12 expirationYear=2017/>" + System.lineSeparator()
-							+ "<Produce id=2 name=name cost=2 expirationMonth=2 expirationDay=12 expirationYear=2017/>" + System.lineSeparator()
-							+ "<Furniture id=1 name=name cost=2 assembled=false assemblyCost=3/>" + System.lineSeparator()
-							+ "<Furniture id=2 name=name cost=2 assembled=false assemblyCost=3/>" + System.lineSeparator()
-							+ "<Transaction>" + System.lineSeparator()
-							+ "</Transaction>" + System.lineSeparator()
-							+ "<Transaction>" + System.lineSeparator()
-							+ "</Transaction>" + System.lineSeparator()
-							+ "</Inventory>";
+		String expected = CharacterUtility.INVENTORY_OPENING_TAG + System.lineSeparator()
+							+ CharacterUtility.PRODUCE_ID_ONE + System.lineSeparator()
+							+ CharacterUtility.PRODUCE_ID_TWO + System.lineSeparator()
+							+ CharacterUtility.FURNITURE_ID_ONE + System.lineSeparator()
+							+ CharacterUtility.FURNITURE_ID_TWO + System.lineSeparator()
+							+ CharacterUtility.TRANSACTION_OPENING_TAG + System.lineSeparator()
+							+ CharacterUtility.TRANSACTION_CLOSING_TAG + System.lineSeparator()
+							+ CharacterUtility.TRANSACTION_OPENING_TAG + System.lineSeparator()
+							+ CharacterUtility.TRANSACTION_CLOSING_TAG + System.lineSeparator()
+							+ CharacterUtility.INVENTORY_CLOSING_TAG;
 
 		assertEquals( expected, result);
 	}
